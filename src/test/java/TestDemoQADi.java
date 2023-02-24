@@ -12,10 +12,12 @@ import static com.codeborne.selenide.Selenide.*;
 public class TestDemoQADi {
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = "1920x1080";}
+        Configuration.browserSize = "1920x1080";
+        Configuration.holdBrowserOpen = true;
+    }
     @Test
     void fillTest(){
-        Configuration.holdBrowserOpen = true;
+
         open("https://demoqa.com/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
@@ -36,7 +38,7 @@ public class TestDemoQADi {
 
         $(By.cssSelector("label[for='hobbies-checkbox-1']")).click();
 
-        File fileToUpload = new File("src/test/resourse/pictures/temp.png");
+        File fileToUpload = new File("src/test/resources/pictures/temp.png");
         $("#uploadPicture").uploadFile(fileToUpload);
 
         $("#currentAddress").setValue("Address");
