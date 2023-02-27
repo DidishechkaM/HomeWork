@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 
-
 public class GithubCheckSolutionTest {
 
     @BeforeAll
@@ -20,22 +19,10 @@ public class GithubCheckSolutionTest {
 
     @Test
     void CheckSolutionForGit() {
-      open("https://github.com/");
-      $(byText("Solutions")).hover();
-      $(byText("Enterprise")).click();
-      $("main.font-mktg, h1").shouldHave(text("Build like the best"));
-     // $("main.font-mktg").$("h1").shouldHave(text("Build like the best"));Вариант 2
-
-
-
-
-
-
-
-
-
-
-
+        open("https://github.com/");
+        $(byText("Solutions")).hover();
+        $(byText("Enterprise")).click();
+        $("main.font-mktg, h1").shouldHave(text("Build like the best"));
 
 
     }
