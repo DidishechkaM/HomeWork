@@ -9,6 +9,7 @@ public class TestDemoQADiWithPageObject extends TestBase {
     void fillTest() {
         String userName = "Dian";
         registrationPage.openPage()
+                .executeJS()
                 .setFirsName(userName)
                 .setLastName("Maksimowa")
                 .setEmail("maksimowa@yandex.ru")
@@ -16,12 +17,11 @@ public class TestDemoQADiWithPageObject extends TestBase {
                 .setNumber("8996266848")
                 .setBirthDay("13", "March", "1993")
                 .setSubject("Maths")
-                .setCheckbox()
+                .setCheckbox("Sports")
                 .uploadFile("src/test/resources/pictures/temp.png")
                 .setAddress("Address")
-                .setState()
-                .setCity()
-                .setstateCity()
+                .setState("Uttar Pradesh")
+                .setstateCity("Agra")
                 .submitclick();
         registrationPage.verifiability();
         registrationPage.verifyValueTable("Student Name", userName + " Maksimowa");
@@ -33,6 +33,7 @@ public class TestDemoQADiWithPageObject extends TestBase {
         registrationPage.verifyValueTable("Hobbies", "Sports");
         registrationPage.verifyValueTable("Picture", "temp.png");
         registrationPage.verifyValueTable("Address", "Address");
+        registrationPage.verifyValueTable("State and City", "Uttar Pradesh Agra");
         registrationPage.closeModal();
     }
 }

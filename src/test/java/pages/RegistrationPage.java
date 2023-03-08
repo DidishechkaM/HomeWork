@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import pages.components.CalendarComponents;
 import pages.components.RegistrationressultModal;
 
@@ -13,102 +12,99 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage {
     RegistrationressultModal registrationressultModal = new RegistrationressultModal();
     CalendarComponents calendarComponents = new CalendarComponents();
+    private final SelenideElement firstNameInput = $("#firstName");
+    private final SelenideElement lastNameInput = $("#lastName");
+    private final SelenideElement emailInput = $("#userEmail");
+    private final SelenideElement genderRadio = $("#genterWrapper");
+
+    private final SelenideElement number = $("#userNumber");
+    private final SelenideElement setSubject = $("#subjectsInput");
+    private final SelenideElement setCheckbox = $("#hobbiesWrapper");
+    private final SelenideElement uploadFile = $("#uploadPicture");
+    private final SelenideElement setAddress = $("#currentAddress");
+    private final SelenideElement setState = $("#state");
+    private final SelenideElement setCity = $("#stateCity-wrapper");
+    
+    private final SelenideElement clickSubmit = $("#submit");
+    private final SelenideElement closemodal = $("#closeLargeModal");
 
 
     public RegistrationPage openPage() {
         open("https://demoqa.com/automation-practice-form");
+        return this;
+    }
+
+    public RegistrationPage executeJS() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
-
-    private final SelenideElement firstNameInput = $("#firstName");
 
     public RegistrationPage setFirsName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-    private final SelenideElement lastNameInput = $("#lastName");
-
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
-
-    private final SelenideElement emailInput = $("#userEmail");
 
     public RegistrationPage setEmail(String value) {
         emailInput.setValue(value);
         return this;
     }
 
-    private final SelenideElement genderRadio = $("#genterWrapper");
 
     public RegistrationPage setGender(String value) {
         genderRadio.$(byText(value)).click();
         return this;
     }
 
-    private final SelenideElement Number = $("#userNumber");
 
     public RegistrationPage setNumber(String value) {
-        Number.setValue(value);
+        number.setValue(value);
         return this;
     }
 
-    private final SelenideElement SetSubject = $("#subjectsInput");
 
     public RegistrationPage setSubject(String value) {
-        SetSubject.setValue(value).pressEnter();
+        setSubject.setValue(value).pressEnter();
         return this;
     }
 
-    private final SelenideElement SetCheckbox = $(By.cssSelector("label[for='hobbies-checkbox-1']"));
 
-    public RegistrationPage setCheckbox() {
-        SetCheckbox.click();
+    public RegistrationPage setCheckbox(String value) {
+        setCheckbox.$(byText(value)).click();
         return this;
     }
 
-    private final SelenideElement UploadFile = $("#uploadPicture");
 
     public RegistrationPage uploadFile(String path) {
-        UploadFile.uploadFile(new File(path));
+        uploadFile.uploadFile(new File(path));
         return this;
     }
 
-    private final SelenideElement setAddress = $("#currentAddress");
 
     public RegistrationPage setAddress(String value) {
         setAddress.setValue(value);
         return this;
     }
 
-    private final SelenideElement setState = $("#state");
 
-    public RegistrationPage setState() {
+    public RegistrationPage setState(String value) {
         setState.click();
+        $("#stateCity-wrapper").$(byText(value)).click();
         return this;
     }
 
-    private final SelenideElement setCity = $("#stateCity-wrapper");
-
-    public RegistrationPage setCity() {
-        setCity.$(byText("Uttar Pradesh")).click();
+    public RegistrationPage setstateCity(String value) {
         $("#city").click();
-        return this;
-    }
-
-    private final SelenideElement estateCity = $("#stateCity-wrapper");
-
-    public RegistrationPage setstateCity() {
-        estateCity.$(byText("Agra")).click();
+        setCity.$(byText(value)).click();
         return this;
 
     }
 
-    private final SelenideElement clickSubmit = $("#submit");
 
     public RegistrationPage submitclick() {
         clickSubmit.click();
@@ -122,7 +118,6 @@ public class RegistrationPage {
 
     }
 
-    private final SelenideElement closemodal = $("#closeLargeModal");
 
     public RegistrationPage closeModal() {
         closemodal.click();
